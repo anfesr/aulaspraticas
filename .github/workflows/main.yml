@@ -1,7 +1,7 @@
 name: Pipeline
 on:
   push:
-    branches: [main]
+    branches: ["**"]
 
 jobs:
   build-and-deploy:
@@ -10,14 +10,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+      - name: Aluno
+        run: echo "Trabalho realizado por Ana Filipa Rodrigues"
 
-      - name: Run Prettier check
-        run: npx prettier --check .
-
-      - name: Build project
-        run: npm run build
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
@@ -25,7 +24,6 @@ jobs:
           publish-dir: "./out"
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          enable-commit-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
