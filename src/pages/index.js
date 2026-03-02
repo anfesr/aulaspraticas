@@ -35,7 +35,7 @@ export default function Home() {
             priority
           />
           <div className={styles.intro}>
-            <h1>To get started, edit the index.js file.</h1>
+            <h1>PIPELINEPIPELINE.</h1>
             <ul>
               <li>teste de prettier</li>
               <li>mais um teste</li>
