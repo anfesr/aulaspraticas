@@ -1,7 +1,7 @@
 name: Pipeline
 on:
   push:
-    branches: ["**"] 
+    branches: ["**"]
 
 jobs:
   build-and-deploy:
@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Aluno
+      - name: Identificacao do Aluno
         run: echo "Trabalho realizado por Ana Filipa Rodrigues"
 
       - name: Install dependencies
@@ -23,6 +23,7 @@ jobs:
       - name: build
         if: github.ref == 'refs/heads/main'
         run: npm run build
+
 
       - name: Deploy to Netlify
         if: github.ref == 'refs/heads/main'
