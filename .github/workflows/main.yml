@@ -1,7 +1,7 @@
 name: Pipeline
 on:
   push:
-    branches: ["**"]
+    branches: ["**"] 
 
 jobs:
   build-and-deploy:
@@ -13,12 +13,19 @@ jobs:
       - name: Aluno
         run: echo "Trabalho realizado por Ana Filipa Rodrigues"
 
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Prettier check
+        run: npx prettier --check .
+
+
+      - name: build
+        if: github.ref == 'refs/heads/main'
+        run: npm run build
 
       - name: Deploy to Netlify
+        if: github.ref == 'refs/heads/main'
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: "./out"
