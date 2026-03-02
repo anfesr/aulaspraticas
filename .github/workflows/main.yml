@@ -23,13 +23,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: npm run build
 
-      - name: Deploy to Netlify
+      - name: deploy
         if: github.ref == 'refs/heads/main'
-        uses: nwtgck/actions-netlify@v2.0
-        with:
-          publish-dir: "./out"
-          production-deploy: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
