@@ -41,6 +41,7 @@ export default function Home() {
               <li>teste de prettier</li>
               <li>mais um teste</li>
               <li>terceiro teste</li>
+              <li>validacao</li>
             </ul>
             <p>
               Looking for a starting point or more instructions? Head over to{" "}
