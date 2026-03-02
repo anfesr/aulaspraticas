@@ -37,6 +37,7 @@ export default function Home() {
           <div className={styles.intro}>
             <h1>PIPELINEPIPELINE.</h1>
             <ul>
+              <li>FUNCIONA???</li>
               <li>teste de prettier</li>
               <li>mais um teste</li>
               <li>terceiro teste</li>
