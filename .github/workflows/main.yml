@@ -19,11 +19,9 @@ jobs:
       - name: Run Prettier check
         run: npx prettier --check .
 
-
       - name: build
         if: github.ref == 'refs/heads/main'
         run: npm run build
-
 
       - name: Deploy to Netlify
         if: github.ref == 'refs/heads/main'
