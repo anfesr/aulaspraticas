@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 import TodoListFilter from "./TodoListFilter";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
   const [filter, setFilter] = useState("Todas");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function addTask(name) {
     const newTask = { id: "todo-" + Date.now(), name: name, completed: false };
@@ -16,6 +24,16 @@ function App() {
   function deleteTask(id) {
     const remainingTasks = tasks.filter((task) => id !== task.id);
     setTasks(remainingTasks);
+  }
+
+  function editTask(id, newName) {
+    const editedTaskList = tasks.map((task) => {
+      if (id === task.id) {
+        return { ...task, name: newName };
+      }
+      return task;
+    });
+    setTasks(editedTaskList);
   }
 
   function toggleTaskCompleted(id) {
@@ -42,6 +60,7 @@ function App() {
         key={task.id}
         toggleTaskCompleted={toggleTaskCompleted}
         deleteTask={deleteTask}
+        editTask={editTask}
       />
     ));
 
@@ -64,4 +83,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
