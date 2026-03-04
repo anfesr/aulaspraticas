@@ -14,15 +14,19 @@ jobs:
         run: echo "Trabalho realizado por Ana Filipa Rodrigues"
 
       - name: Install dependencies
+        working-directory: ./ex1_react 
         run: npm install
 
       - name: Run Prettier check
+        working-directory: ./ex1_react 
         run: npx prettier --check .
 
       - name: build
         if: github.ref == 'refs/heads/main'
+        working-directory: ./ex1_react  
         run: npm run build
 
       - name: deploy
         if: github.ref == 'refs/heads/main'
-        run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+        working-directory: ./ex1_react 
+        run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir ./build --prod
