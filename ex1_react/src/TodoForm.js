@@ -5,7 +5,7 @@ function TodoForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!name.trim()) return; 
+    if (!name.trim()) return;
     props.addTask(name);
     setName("");
   }
