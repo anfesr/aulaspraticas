@@ -18,15 +18,15 @@ jobs:
         run: npm install
 
       - name: Run Prettier check
-        working-directory: ./ex1_react 
+        working-directory: ./
         run: npx prettier --write .
 
       - name: build
         if: github.ref == 'refs/heads/main'
-        working-directory: ./ex1_react  
+        working-directory: ./
         run: npm run build
 
       - name: deploy
         if: github.ref == 'refs/heads/main'
-        working-directory: ./ex1_react 
+        working-directory: ./
         run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir ./build --prod
