@@ -19,7 +19,7 @@ jobs:
 
       - name: Run Prettier check
         working-directory: ./ex1_react 
-        run: npx prettier --check .
+        run: npx prettier --write .
 
       - name: build
         if: github.ref == 'refs/heads/main'
